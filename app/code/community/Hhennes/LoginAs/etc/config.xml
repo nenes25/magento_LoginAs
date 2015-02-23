@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
- 
- <!-- Configuration de base du Module -->
     <modules>
         <Hhennes_LoginAs>
-            <version>0.1.0</version>    
+            <version>0.1.1</version>    
         </Hhennes_LoginAs>
     </modules>
- <!-- Configuration globale -->
     <global>
         <models>
             <hhennes_loginas>
@@ -20,7 +17,6 @@
             </hhennes_loginas>
         </helpers>
     </global>
-  <!-- Configuration Front Office-->
     <frontend>
         <routers>
             <hhennes_loginas>
@@ -31,7 +27,6 @@
                 </args>
             </hhennes_loginas>
         </routers>
-        <!-- Traduction du module -->
          <translate>
             <modules>
                 <hhennes_LoginAs>
@@ -41,21 +36,19 @@
                 </hhennes_LoginAs>
             </modules>
         </translate>
-    </frontend>  
-    <!-- Configuration back Office -->
+    </frontend>
     <adminhtml>
         <events>
             <adminhtml_block_html_before>
                 <observers>
-                    <mymodule>
+                    <hhennes_loginas>
                         <!-- Add column to catalog product grid -->
                         <class>hhennes_loginas/observer</class>
                         <method>addCustomerLoginAsColumn</method>
-                    </mymodule>
+                    </hhennes_loginas>
                 </observers>
             </adminhtml_block_html_before>
         </events>
-        <!-- Traduction du module -->
          <translate>
             <modules>
                 <Hhennes_LoginAs>

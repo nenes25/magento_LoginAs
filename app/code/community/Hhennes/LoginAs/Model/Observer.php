@@ -1,54 +1,51 @@
 <?php
+
 /**
- * Description of Observer
+ *  Hhennes LoginAs Model Observer
  *
- * @author herve
+ * @category    Hhennes
+ * @package     Hhennes_LoginAs
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author herve - <contact@h-hennes.fr>
+ * @copyright Copyright (c) hhennes 2015 (http://www.h-hennes.fr)
  */
 class Hhennes_LoginAs_Model_Observer {
- 
- 
+
     /**
      * Ajout d'une nouvelle colonne dans le Grid Client de Magento
+	 * Add a new option "login as" on the column "action" of the Mage_Adminhtml_Block_Customer_Grid
      * @param Varien_Event_Observer $observer 
      */
-    public function addCustomerLoginAsColumn( Varien_Event_Observer $observer ) {
-         
+    public function addCustomerLoginAsColumn(Varien_Event_Observer $observer) {
+
         $block = $observer->getBlock();
- 
-		//Si le block est la grid des clients on fait notre action
-        if ( $block instanceof Mage_Adminhtml_Block_Customer_Grid ) {
-            
-            echo 'Observer fonctionnel';
- 
-            //On reprends le contenu de la colonne action de base et on rajoute l'option pour s'identifer
-            $block->addColumn('action',
-            array(
-                'header'    =>  Mage::helper('customer')->__('Action'),
-                'width'     => '100',
-                'type'      => 'action',
-                'getter'    => 'getId',
-                'actions'   => array(
+
+        if ($block instanceof Mage_Adminhtml_Block_Customer_Grid) {
+
+            $block->addColumn('action', array(
+                'header' => Mage::helper('customer')->__('Action'),
+                'width' => '100',
+                'type' => 'action',
+                'getter' => 'getId',
+                'actions' => array(
                     array(
-                        'caption'   => Mage::helper('customer')->__('Edit'),
-                        'url'       => array('base'=> '*/*/edit'),
-                        'field'     => 'id'
+                        'caption' => Mage::helper('customer')->__('Edit'),
+                        'url' => array('base' => '*/*/edit'),
+                        'field' => 'id'
                     ),
-					//Notre nouvelle action
+                    //New Action
                     array(
-                        'caption'   => Mage::helper('hhennes_loginas')->__('Login As'),
-                        'url'       => array('base'=> 'hhennes_loginas/login'), // Redirection vers le controller Front Office
-                        'field'     => 'id'
+                        'caption' => Mage::helper('hhennes_loginas')->__('Login As'),
+                        'url' => array('base' => 'hhennes_loginas/login'), // Redirection to front office controller
+                        'field' => 'id'
                     )
                 ),
-                'filter'    => false,
-                'sortable'  => false,
-                'index'     => 'stores',
+                'filter' => false,
+                'sortable' => false,
+                'index' => 'stores',
                 'is_system' => true,
-        ));
- 
+            ));
         }
- 
     }
- 
-}
 
+}
