@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Hhennes_LoginAs>
-            <version>0.1.1</version>    
+            <version>0.1.2</version>    
         </Hhennes_LoginAs>
     </modules>
     <global>

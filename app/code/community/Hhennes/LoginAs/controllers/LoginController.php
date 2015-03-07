@@ -14,19 +14,25 @@ class Hhennes_LoginAs_LoginController extends Mage_Core_Controller_Front_Action 
     /**
      * Allow you to be identified as the customer you want on the frontEnd
      */
-    public function indexAction() {
-
+   public function indexAction(){
+ 
         $customerSession = Mage::getSingleton('customer/session');
-
-        if ($customerSession->isLoggedIn()) {
+ 
+        if ( $customerSession->isLoggedIn() ) {
             $customerSession->logout();
         }
-
+        
+        if ( $this->getRequest()->getParam('secure_key') != Mage::helper('hhennes_loginas')->getSecureKey())
+            die($this->__('Hack Attempt : secure key invalid'));
+        
         $customerId = $this->getRequest()->getParam('id');
+ 
         $customerSession->loginById($customerId);
-
+ 
         Mage::getSingleton('customer/session')->addSuccess($this->__('You are now identified as the choiced customer'));
-        $this->_redirect('customer/account/');
+  
+       $this->_redirect('customer/account/');
     }
+ 
 
 }

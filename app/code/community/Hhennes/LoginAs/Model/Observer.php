@@ -36,7 +36,7 @@ class Hhennes_LoginAs_Model_Observer {
                     //New Action
                     array(
                         'caption' => Mage::helper('hhennes_loginas')->__('Login As'),
-                        'url' => array('base' => 'hhennes_loginas/login'), // Redirection to front office controller
+                        'url' => array('base' => 'hhennes_loginas/login', 'params' => array('secure_key' => Mage::helper('hhennes_loginas')->getSecureKey())), // Redirection to front office controller
                         'field' => 'id'
                     )
                 ),
